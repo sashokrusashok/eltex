@@ -38,8 +38,9 @@ int main(int argc, char** argv)
       b();
    }
    er();
+   return 0;
 }
-//бинарные операции
+//бинарные опzxcvерации
 /*#include <stdio.h>
 int main()
 {
@@ -49,5 +50,5 @@ int main()
 
 	//b = b & 0xFF0;
 	printf(" %d \n",b= a & 0x070);
-	return 0;
+	return 0;xcvbvcxbvcxb
 }*/
