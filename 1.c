@@ -45,6 +45,8 @@ int main(int argc, char** argv)
 int main()
 {
 	int a = 1770;
+    int a = 1770;
+      int a = 1770;
 	int b;
 	//b=(a<<4)>>4;
 
