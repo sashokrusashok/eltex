@@ -51,4 +51,6 @@ int main()
 	//b = b & 0xFF0;
 	printf(" %d \n",b= a & 0x070);
 	return 0;xcvbvcxbvcxb
+  return
+  return
 }*/
