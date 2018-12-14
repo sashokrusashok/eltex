@@ -55,4 +55,8 @@ int main()
   printf(" %d \n",b= a & 0x070);
   printf(" %d \n",b= a & 0x070);
 	return 0;xcvbvcxbvcxb
+  return
+  return
+  return
+  return
 }*/
