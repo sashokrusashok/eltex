@@ -160,7 +160,7 @@ int conf(char *p)
     return 0;
 }
 /*
-    Получение значения опции. После того, как найдена ее позиция, следующим байтом будет описана длинна опции([i+1]).
+    Получение значения опции. После того, как найдена позиция опции, следующим байтом будет описана длинна опции([i+1]).
     В область памяти, на которую указывает value1 помещается величина опции, которая следует сразу же после значения длинны[i+2].
 */
 char *get_value_opt(uint8_t opt, uint8_t *dhcp_opt)
@@ -185,7 +185,7 @@ char *get_value_opt(uint8_t opt, uint8_t *dhcp_opt)
     return value1;
 }
 /*
-    Получение позиции опции. Из SIZE_OPTION вычитается 4, потому что в массиве exten первые четыре бита это значение 
+    Получение позиции опции. Из SIZE_OPTION вычитается 4, потому что в массиве exten первые четыре байта это значение 
     magick cookie DHCP
 */
 int get_position_opt(uint8_t opt, uint8_t *dhcp_opt)
@@ -209,14 +209,14 @@ void add_opt_82(struct bootp_pkt *dhcp, int position_option)
     len_CID=sizeof(atoi(CID))/4;
     dhcp->exten[position_option] = 0x52;/*значение 82 опции в 16-м виде*/
     dhcp->exten[position_option+1] = len_CID+SIZE_MAC+4;/*длинна опции, которая учитывает длинну значений подопций RID,CID их длинны и номера подопций*/
-    dhcp->exten[position_option+2] = 0x01;//номер подопции (Circuit ID)
-    dhcp->exten[position_option+3] = len_CID;//длинна Circuit ID
-    dhcp->exten[position_option+4] = atoi(CID);//значение Circuit ID(номер порта, на который поступают запросы от клиента), считанное с файла конфигурации
-    dhcp->exten[position_option+5] = 0x02;//номер подопции (Remote ID)
-    dhcp->exten[position_option+6] = SIZE_MAC;//длинна Remote ID
-    for(i=0; i < SIZE_MAC; i++)//значение Circuit ID(MAC-адрес ретранслятора), считанное с файла конфигурации
+    dhcp->exten[position_option+2] = 0x01;/*номер подопции (Circuit ID)*/
+    dhcp->exten[position_option+3] = len_CID;/*длинна Circuit ID*/
+    dhcp->exten[position_option+4] = atoi(CID);/*значение Circuit ID(номер порта, на который поступают запросы от клиента), считанное с файла конфигурации*/
+    dhcp->exten[position_option+5] = 0x02;/*номер подопции (Remote ID)*/
+    dhcp->exten[position_option+6] = SIZE_MAC;/*длинна Remote ID*/
+    for(i=0; i < SIZE_MAC; i++)/*значение Circuit ID(MAC-адрес ретранслятора), считанное с файла конфигурации*/
         dhcp->exten[position_option+7+i] = atoi(RID[i]);
-    dhcp->exten[position_option+7+i] = 0xFF;
+    dhcp->exten[position_option+7+i] = 0xFF;/*конец опций*/
 }
 /*
     Создание база данных привязки DHCP. Организуется с помощью списка, когда выделяется память для нового элемента списка, то на него ставится указатель, 
@@ -244,7 +244,7 @@ struct info_client *create(struct info_client *table,struct bootp_pkt *dhcp, int
     return table; 
 }
 /*
-    Проверка соответствия информации клиента, который отправил пакет DHCPRELEASE/DHCPDECLINE с информацией которая находится в базе данных об этом клиенте.
+    Проверка соответствия информации о клиенте, который отправил пакет DHCPRELEASE/DHCPDECLINE, с информацией которая находится в базе данных об этом клиенте.
     Функция принимает, элемент списка, ip,mac и индекс интефейса, на кот пришел запрос
     Если возвращается 0, то информация о клиенте не соответствует.  
 */
