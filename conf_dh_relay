@@ -1,5 +1,11 @@
 SERVERS="10.0.2.15"     
                         
-ifname="192.168.0.10"   
+ifname="eth2"           
                         
-ofname="10.0.2.14"      
+ofname="eth3"           
+                        
+OPTIONS="-S"            
+                        
+CID="02"                
+                        
+RID="08:00:27:68:C5:93" 
