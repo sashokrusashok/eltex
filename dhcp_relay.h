@@ -62,7 +62,7 @@ struct info_client {
 };
 
 char ip[100],*dhcp_server,*ifname,*ofname,*OPTIONS,*CID,*RID[6];
-int snoop_flag,first_client;
+int snoop_flag,first_client,head_flag;
 struct info_client *head,*head1;
 struct info_client *last_add_client_inbase; /*последний добавленный клиент в базу данных*/
 
