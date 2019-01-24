@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
     FD_ZERO(&rset); /* сбрасываем все биты в rset */
     snoop_flag = 0;
     first_client = 0;
+    head_flag = 0;
     last_add_client_inbase = NULL;
 
     /*
