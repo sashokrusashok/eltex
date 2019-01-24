@@ -318,7 +318,11 @@ int delete_list(struct info_client *table)
     { 
         prev = table;
         table = table->next;
-        free(prev->leasetime);
+        /*Для prev->leasetime была выделина динамическая память, но так как для заголовка она не выделялась, то в заголовке ее удалять не надо*/
+        if(head_flag == 0)
+            head_flag = 1;
+        else
+            free(prev->leasetime);
         free(prev);
     } 
     return 0;
