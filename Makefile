@@ -1,4 +1,5 @@
 #makefiles
+#tyutyutyu
 objects = all_functions.o libfs.a dhcp_relay.o dhcp
 
 edit : $(objects) start clean
